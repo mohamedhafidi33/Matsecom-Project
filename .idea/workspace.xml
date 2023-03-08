@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="46a1df27-49c3-4f23-884c-1e6b0a38fb10" name="Changes" comment="added junit4">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/MainTest.java" afterDir="false" />
+    <list default="true" id="46a1df27-49c3-4f23-884c-1e6b0a38fb10" name="Changes" comment="added java swing form">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/MainPage.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/MainPage.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gui/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gui/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,6 +19,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JUnit4 Test Class" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -45,12 +47,19 @@
     "WebServerToolWindowFactoryState": "false",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit4",
     "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4": "",
-    "create.test.in.the.same.root": "true"
+    "create.test.in.the.same.root": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\luisa\IdeaProjects\Matsecom\src\gui" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="org.example" />
@@ -128,6 +137,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="added junit4" />
-    <option name="LAST_COMMIT_MESSAGE" value="added junit4" />
+    <MESSAGE value="added java swing form" />
+    <option name="LAST_COMMIT_MESSAGE" value="added java swing form" />
   </component>
 </project>
