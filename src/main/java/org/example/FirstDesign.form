@@ -57,31 +57,29 @@
       </component>
       <component id="388aa" class="javax.swing.JList" binding="list2" default-binding="true">
         <constraints>
-          <grid row="0" column="4" row-span="8" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="3" column="4" row-span="5" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
         <properties>
           <model>
-            <item value="Session List"/>
-            <item value="Yannik, Voice Call, 12min"/>
-            <item value="Lukas, App download, 3min"/>
+            <item value="Session Information:"/>
+            <item value="1) Voice Call, "/>
+            <item value="   12min"/>
           </model>
         </properties>
       </component>
       <component id="ded5a" class="javax.swing.JList" binding="list1" default-binding="true">
         <constraints>
-          <grid row="0" column="3" row-span="8" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="3" column="3" row-span="5" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
         <properties>
           <model>
-            <item value="Subscriber List:"/>
-            <item value="Yannik"/>
-            <item value="Yannick"/>
-            <item value="Lukas"/>
-            <item value="Mohamed"/>
+            <item value="Subscriber Information:"/>
+            <item value="PhairPhone"/>
+            <item value="GreenMobile L"/>
           </model>
         </properties>
       </component>
@@ -257,17 +255,16 @@
       </component>
       <component id="3129e" class="javax.swing.JList" binding="list3" default-binding="true">
         <constraints>
-          <grid row="0" column="5" row-span="8" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
+          <grid row="3" column="5" row-span="5" col-span="1" vsize-policy="6" hsize-policy="2" anchor="0" fill="3" indent="0" use-parent-layout="false">
             <preferred-size width="150" height="50"/>
           </grid>
         </constraints>
         <properties>
           <model>
-            <item value="Invoice List:"/>
-            <item value="Yannik: "/>
+            <item value="Invoice Information:"/>
             <item value="used minutes:23"/>
             <item value="used Data:120MB"/>
-            <item value="chrges that are left:0€"/>
+            <item value="left charges:0€"/>
           </model>
         </properties>
       </component>
@@ -277,6 +274,63 @@
         </constraints>
         <properties>
           <text value="Call invoice"/>
+        </properties>
+      </component>
+      <component id="1b652" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Subscriber List"/>
+        </properties>
+      </component>
+      <component id="ff37d" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Session List"/>
+        </properties>
+      </component>
+      <component id="e5dc1" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="1" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="Invoice List"/>
+        </properties>
+      </component>
+      <component id="87543" class="javax.swing.JComboBox" binding="comboBox6" default-binding="true">
+        <constraints>
+          <grid row="2" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yannik"/>
+            <item value="Yannick"/>
+          </model>
+        </properties>
+      </component>
+      <component id="1013e" class="javax.swing.JComboBox" binding="comboBox7" default-binding="true">
+        <constraints>
+          <grid row="2" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yannik"/>
+            <item value="Yannick"/>
+          </model>
+        </properties>
+      </component>
+      <component id="6c0d5" class="javax.swing.JComboBox" binding="comboBox8" default-binding="true">
+        <constraints>
+          <grid row="2" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <model>
+            <item value="Yannik"/>
+            <item value="Yannick"/>
+          </model>
         </properties>
       </component>
     </children>
