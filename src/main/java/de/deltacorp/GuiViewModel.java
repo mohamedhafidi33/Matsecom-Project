@@ -11,11 +11,6 @@ public class GuiViewModel {
     private String mCC = "262";
     private String mNC = "42";
 
-    public static void main(String[] args) {
-        GuiViewModel viewModel = new GuiViewModel();
-        System.out.println(viewModel.addSubscriber("Hannah", "Klein", "220968", "PhairPhone", "GreenMobil S").toString());
-    }
-
     public ArrayList<Subscriber> addSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType){
         Subscriber sub = this.creatSubscriber(forename, surname, mSIN, TerminalType, SubscribtionType);
         subscribers.add(sub);

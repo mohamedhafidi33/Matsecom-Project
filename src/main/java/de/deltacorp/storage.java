@@ -51,7 +51,7 @@ public class storage {
     }
 
     public void storeSubscribers(ArrayList<Subscriber> subscribers) {
-        JSONArray arr = this.readSubscribers();
+        JSONArray arr = new JSONArray();
         for (Subscriber subscriber : subscribers) {
             JSONObject jsonSubscriber = new JSONObject(subscriber);
             arr.put(jsonSubscriber);
