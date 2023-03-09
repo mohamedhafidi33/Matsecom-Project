@@ -7,6 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
+import org.example.Invoice;
+import org.example.Service;
+import org.example.Session;
+import org.example.Subscriber;
+import org.example.Subscription;
+import org.example.Terminal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -51,7 +57,7 @@ public class storage {
      * (Adds it to the exitsing JSONArray in the file)
      * @param subscriber subscriber to add
      */
-    public void storeSubscriber(Object subscriber) {
+    public void storeSubscriber(Subscriber subscriber) {
         JSONArray jsonArray = readSubscribers();
         JSONObject jsonSubscriber = new JSONObject(subscriber);
         jsonArray.put(jsonSubscriber);
@@ -64,7 +70,7 @@ public class storage {
         }
     }
 
-    public void storeSession(Object session) {
+    public void storeSession(Session session) {
         JSONArray jsonArray = readSessions();
         JSONObject jsonSessions = new JSONObject(session);
         jsonArray.put(jsonSessions);
@@ -77,7 +83,7 @@ public class storage {
         }
     }
 
-    public void storeInvoice(Object invoice) {
+    public void storeInvoice(Invoice invoice) {
         JSONArray jsonArray = readInvoices();
         JSONObject jsonInvoices = new JSONObject(invoice);
         jsonArray.put(jsonInvoices);
@@ -94,13 +100,22 @@ public class storage {
      * Returns all Subscribers stored in subscriber.json
      * @return ArrayList of Subscribers
      */
-    public ArrayList<testclass> getSubscribers(){
-        ArrayList<testclass> array = new ArrayList<testclass>();
+    public ArrayList<Subscriber> getSubscribers(){
+        ArrayList<Subscriber> array = new ArrayList<Subscriber>();
         JSONArray jsonArray = this.readSubscribers();
         for (int i = 0; i < jsonArray.length(); i++){
             JSONObject jsonSubscriber = jsonArray.getJSONObject(i);
             // Create Java Object from JSON Object
-            testclass subscriber = new testclass(jsonSubscriber.getInt("numbera"), jsonSubscriber.getString("firstName"), jsonSubscriber.getString("secondName"));
+            Subscriber subscriber = new Subscriber(jsonSubscriber.getDouble("remainingDataVolumeMb"),
+                                                   jsonSubscriber.getDouble("remainingFreeMinutes"),
+                                                   jsonSubscriber.getDouble("chargingTotalEur"),
+                                                   jsonSubscriber.getString("forename"),
+                                                   jsonSubscriber.getString("surname"),
+                                                   jsonSubscriber.getString("MCC"),
+                                                   jsonSubscriber.getString("MNC"), 
+                                                   jsonSubscriber.getString("MSIN"),
+                                                   (Terminal)jsonSubscriber.get("terminal"),
+                                                   (Subscription)jsonSubscriber.get("subscription"));
             array.add(subscriber);
         }
         return array;
@@ -110,25 +125,31 @@ public class storage {
      * Returns all Subscribers stored in subscriber.json
      * @return ArrayList of Subscribers
      */
-    public ArrayList<testclass> getSessions(){
-        ArrayList<testclass> array = new ArrayList<testclass>();
+    public ArrayList<Session> getSessions(){
+        ArrayList<Session> array = new ArrayList<Session>();
         JSONArray jsonArray = this.readSessions();
         for (int i = 0; i < jsonArray.length(); i++){
             JSONObject jsonSession = jsonArray.getJSONObject(i);
             // Create Java Object from JSON Object
-            testclass session = new testclass(jsonSession.getInt("numbera"), jsonSession.getString("firstName"), jsonSession.getString("secondName"));
+            Session session = new Session(jsonSession.getString("username"),
+                                          jsonSession.getDouble("durationSeconds"),
+                                          (Service)jsonSession.get("service"));
             array.add(session);
         }
         return array;
     }
 
-    public ArrayList<testclass> getInvoices(){
-        ArrayList<testclass> array = new ArrayList<testclass>();
+    public ArrayList<Invoice> getInvoices(){
+        ArrayList<Invoice> array = new ArrayList<Invoice>();
         JSONArray jsonArray = this.readInvoices();
         for (int i = 0; i < jsonArray.length(); i++){
             JSONObject jsonInvoices = jsonArray.getJSONObject(i);
             // Create Java Object from JSON Object
-            testclass invoice = new testclass(jsonInvoices.getInt("numbera"), jsonInvoices.getString("firstName"), jsonInvoices.getString("secondName"));
+            Invoice invoice = new Invoice(jsonInvoices.getString("subscriberImsi"),
+                                          jsonInvoices.getString("subscriberFullName"),
+                                          jsonInvoices.getDouble("usedDataMb"),
+                                          jsonInvoices.getDouble("usedMinutes"),
+                                          jsonInvoices.getDouble("appliedChargesEur"));
             array.add(invoice);
         }
         return array;
