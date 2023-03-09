@@ -1,16 +1,21 @@
 package de.deltacorp;
 
+import java.util.ArrayList;
+
 public class GuiViewModel {
+
+    private storage storage = new storage();
+
     public void addSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType){
         String mCC = "262";
         String mNC = "42";
-        Terminal terminal;
-        terminal = Terminal.PHAIR_PHONE;
+        String iMSI = mCC + mNC + mSIN;
+        Terminal terminal = null;
+        Subscription subscribtionType = null;
         double remainingDataVolumeMb = 0;
         double chargingTotalEur = 0;
         double remainingFreeMinutes = 0;
-        Subscription subscribtionType;
-        subscribtionType = Subscription.GREEN_MOBIL_S;
+
         switch (TerminalType) {
             case "PhairPhone":
                 terminal = Terminal.PHAIR_PHONE;
@@ -42,16 +47,12 @@ public class GuiViewModel {
                 remainingFreeMinutes = 150;
                 subscribtionType = Subscription.GREEN_MOBIL_L;
         }
-        mSIN = IMSIText.getText();
-        Subscriber.add(new Subscriber(remainingDataVolumeMb,
-                chargingTotalEur,
-                remainingFreeMinutes,
-                ForenameText.getText(),
-                SurenameText.getText(),
-                mCC,
-                mNC,
-                mSIN,
-                terminal,
-                subscribtionType));
+        
+        Subscriber sub = new Subscriber(remainingDataVolumeMb, chargingTotalEur, remainingFreeMinutes, forename, surname, mCC, mNC, mSIN, terminal, subscribtionType);
+        storage.storeSubscriber(sub);
+    }
+
+    public ArrayList<Subscriber> getSubscribers() {
+        return storage.getSubscribers();
     }
 }
