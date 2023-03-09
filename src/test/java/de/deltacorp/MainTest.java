@@ -1,4 +1,4 @@
-package org.example;
+package de.deltacorp;
 
 import org.junit.Test;
 
