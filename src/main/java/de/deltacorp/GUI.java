@@ -1,6 +1,6 @@
 package de.deltacorp;
 
-import org.example.Terminal;
+import de.deltacorp.Terminal;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class GUI {
     public static storage storage = new storage();
-    public static ArrayList<org.example.Subscriber> Subscriber;
+    public static ArrayList<de.deltacorp.Subscriber> Subscriber;
     private JPanel DesignPanel;
     private JButton managementOfSubscribersButton;
     private JList list1;
@@ -102,7 +102,7 @@ public class GUI {
                             terminal=Terminal.PHAIR_PHONE;
                             break;
                         case "Pear aphone 4s":
-                            terminal=Terminal.PEAR_APHONE_4s;
+                            terminal=Terminal.PEAR_APHONE_4S;
                             break;
                         case "Samsung S42plus":
                             terminal =Terminal.SAMSUNG_S42PLUS;
