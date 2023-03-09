@@ -1,4 +1,4 @@
-package org.example;
+package de.deltacorp;
 
 public class Invoice {
 	private String subscriberImsi;

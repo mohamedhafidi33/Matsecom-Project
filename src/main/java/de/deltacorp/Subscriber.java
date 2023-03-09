@@ -1,4 +1,4 @@
-package org.example;
+package de.deltacorp;
 
 public class Subscriber {
 	private double remainingDataVolumeMb;

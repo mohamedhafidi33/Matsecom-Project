@@ -1,4 +1,4 @@
-package org.example;
+package de.deltacorp;
 
 public enum Subscription {
 	GREEN_MOBIL_S("GreenMobil S",8,0,0.08,500),

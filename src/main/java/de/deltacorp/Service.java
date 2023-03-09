@@ -1,9 +1,7 @@
 /**
  * 
  */
-package org.example;
-
-import java.util.ArrayList;
+package de.deltacorp;
 
 /**
  * @author Hafidi
