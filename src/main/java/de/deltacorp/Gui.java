@@ -1,12 +1,10 @@
 package de.deltacorp;
 
-import de.deltacorp.Terminal;
-
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
-public class GUI {
+public class Gui {
     public static storage storage = new storage();
     public static ArrayList<de.deltacorp.Subscriber> Subscriber;
     private JPanel DesignPanel;
@@ -30,7 +28,7 @@ public class GUI {
     private JComboBox InvoiceDropDownList;
     private JComboBox SessionDropDownList;
 
-    public GUI() {
+    public Gui() {
         ChooseMinutesOfSession.setModel(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
         JFormattedTextField tf = ((JSpinner.DefaultEditor) ChooseMinutesOfSession.getEditor()).getTextField();
         tf.setEditable(false);
@@ -134,7 +132,7 @@ public class GUI {
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("GUI");
-        frame.setContentPane(new GUI().DesignPanel);
+        frame.setContentPane(new Gui().DesignPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
         frame.setVisible(true);

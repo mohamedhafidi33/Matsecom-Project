@@ -93,7 +93,7 @@
                                 <transformer
                                         implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                                     <manifestEntries>
-                                        <Main-Class>de.deltacorp.Main</Main-Class>
+                                        <Main-Class>de.deltacorp.Gui</Main-Class>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
@@ -106,18 +106,10 @@
 			                            <exclude>META-INF/*.RSA</exclude>
 			                        </excludes>
 			                    </filter>
-			                </filters>
+			                </filters>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compile-pluging</artifactId>
-            <version>3.8.1</version>
-            <configuration>
-            <release>17</release>
-            </configuration>
             </plugin>
         </plugins>
 
