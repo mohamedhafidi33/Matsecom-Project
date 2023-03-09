@@ -5,11 +5,11 @@ public enum Subscription {
 	GREEN_MOBIL_M("GreenMobil M",22,100,0.06,2),
 	GREEN_MOBIL_L("GreenMobil L",42,150,0.04,5);
 	
-	private String name;
-	private double basicfee;
-	private double minutesIncluded;
-	private double pricePerMinuteEuro;
-	private double dataVolumeMB;
+	public final String name;
+	public final double basicfee;
+	public final double minutesIncluded;
+	public final double pricePerMinuteEuro;
+	public final double dataVolumeMB;
 	
 	private Subscription(String name, double basicfee, double minutesIncluded, double pricePerMinuteEuro,
 			double dataVolumeMB) {

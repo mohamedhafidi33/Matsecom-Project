@@ -7,10 +7,10 @@ public enum RanTechnology {
 	HSPA("3G(HSPA)",20,new HashMap<SignalStrength,Double>(),false),
 	LTE("4G(LTE)",300,new HashMap<SignalStrength,Double>(),false);
 	
-	private String name;
-	private double maxThroughputMbits;
-	private HashMap<SignalStrength,Double>throughputFactors ;
-	private boolean isSupportingVoiceCalls;
+	public String name;
+	public double maxThroughputMbits;
+	public HashMap<SignalStrength,Double>throughputFactors ;
+	public boolean isSupportingVoiceCalls;
 	
 	
 	

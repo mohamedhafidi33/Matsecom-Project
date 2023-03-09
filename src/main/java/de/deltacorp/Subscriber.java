@@ -1,16 +1,16 @@
 package de.deltacorp;
 
 public class Subscriber {
-	private double remainingDataVolumeMb;
-	private double remainingFreeMinutes;
-	private double chargingTotalEur;
-	private String forename;
-	private String surname;
+	public double remainingDataVolumeMb;
+	public double remainingFreeMinutes;
+	public double chargingTotalEur;
+	public String forename;
+	public String surname;
 	private String MCC;
 	private String MNC;
 	private String MSIN;
-	private Terminal terminal;
-	private Subscription subscription;
+	public Terminal terminal;
+	public Subscription subscription;
 
 	public Subscriber(double remainingDataVolumeMb, double chargingTotalEur, double remainingFreeMinutes, String forename,
 			String surname, String mCC, String mNC, String mSIN, Terminal terminal, Subscription subscription) {
@@ -105,5 +105,6 @@ public class Subscriber {
 	public void setSubscription(Subscription subscription) {
 		this.subscription = subscription;
 	}
-	
+
+
 }

@@ -13,19 +13,12 @@ public enum Service {
 	APL(new RanTechnology[] {RanTechnology.HSPA,RanTechnology.LTE},10),
 	AHDV(new RanTechnology[] {RanTechnology.HSPA,RanTechnology.LTE},100);
 	
-	private RanTechnology requiredRanTechnologies[];
-	private double demandedDatarateMbits;
+	public final RanTechnology requiredRanTechnologies[];
+	public final double demandedDatarateMbits;
 	
 	private Service(RanTechnology[] requiredRanTechnologies, double demandedDatarateMbits) {
 		this.requiredRanTechnologies = requiredRanTechnologies;
 		this.demandedDatarateMbits = demandedDatarateMbits;
-	}
-	
-	public RanTechnology[] getRequiredRanTechnologies() {
-		return requiredRanTechnologies;
-	}
-	public double getDemandedDatarateMbits() {
-		return demandedDatarateMbits;
 	}
 	
 }

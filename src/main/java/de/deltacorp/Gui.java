@@ -10,12 +10,13 @@ import java.util.ArrayList;
 public class Gui {
     public boolean isEditing = false;
     public static storage storage = new storage();
-    public static ArrayList<de.deltacorp.Subscriber> Subscriber;
+    public static ArrayList<Subscriber> Subscriber;
+
     private JPanel DesignPanel;
     private JButton managementOfSubscribersButton;
     private JList list1;
     private JTextField ForenameText;
-    private JTextField SurenameText;
+    private JTextField SurnameText;
     private JTextField IMSIText;
     private JComboBox ChooseEditSubscriber;
     private JList list2;
@@ -36,12 +37,13 @@ public class Gui {
         ChooseMinutesOfSession.setModel(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
         JFormattedTextField tf = ((JSpinner.DefaultEditor) ChooseMinutesOfSession.getEditor()).getTextField();
         tf.setEditable(false);
+
         ChooseEditSubscriber.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 if (ChooseEditSubscriber.getSelectedItem() == "Yannik") {
                     ForenameText.setText("Yannik");
-                    SurenameText.setText("Schreiter");
+                    SurnameText.setText("Schreiter");
                     IMSIText.setText("0123456789");
                     managementOfSubscribersButton.setText("Edit Subscriber");
                     removeSubscriberButton.setVisible(true);
@@ -54,7 +56,7 @@ public class Gui {
                     managementOfSubscribersButton.setText("Add Subscriber");
                     removeSubscriberButton.setVisible(false);
                     IMSIText.setText("");
-                    SurenameText.setText("");
+                    SurnameText.setText("");
                     ForenameText.setText("");
                     IMSIText.setEditable(true);
                 }
@@ -87,70 +89,58 @@ public class Gui {
                 if(isEditing){
 
                 } else {
-                    if (ForenameText.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "You have forgot to write the Forename of the Subscriber.");
-                    } else if (SurenameText.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "You have forgot to write the Surename of the Subscriber.");
+                    if(ForenameText.getText().equals("")){
+                        JOptionPane.showMessageDialog(null,"You have forgot to write the Forename of the Subscriber.");
+                    } else if ( SurnameText.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null,"You have forgot to write the Surname of the Subscriber.");
                     } else if (IMSIText.getText().equals("")) {
-                        JOptionPane.showMessageDialog(null, "You have forgot to give a IMSI to the Subscriber.");
-                    } else if (IMSIText.getText().length() != 10) {
-                        JOptionPane.showMessageDialog(null, "The IMSI is to short.");
+                        JOptionPane.showMessageDialog(null,"You have forgot to give a IMSI to the Subscriber.");
+                    } else if (IMSIText.getText().length() != 10){
+                        JOptionPane.showMessageDialog(null,"The IMSI is to short.");
                     } else {
-                        String TerminalType = TerminalTypeDropDown.getItemAt(TerminalTypeDropDown.getSelectedIndex()).toString();
-                        String SubscribtionType = SubscriptionTypeDropDown.getItemAt(SubscriberListDropDown.getSelectedIndex()).toString();
-                        Terminal terminal;
-                        terminal = Terminal.PHAIR_PHONE;
+                        Terminal terminal = Terminal.valueOf(
+                                TerminalTypeDropDown.getItemAt(TerminalTypeDropDown.getSelectedIndex()).toString()
+                        );
+                        Subscription subscription = Subscription.valueOf(
+                                SubscriptionTypeDropDown.getItemAt(SubscriberListDropDown.getSelectedIndex()).toString()
+                        );
                         double remainingDataVolumeMb = 0;
                         double chargingTotalEur = 0;
                         double remainingFreeMinutes = 0;
                         String mCC = "262";
                         String mNC = "42";
                         String mSIN;
-                        Subscription subscribtionType;
-                        subscribtionType = Subscription.GREEN_MOBIL_S;
 
-                        switch (TerminalType) {
-                            case "PhairPhone":
-                                terminal = Terminal.PHAIR_PHONE;
-                                break;
-                            case "Pear aphone 4s":
-                                terminal = Terminal.PEAR_APHONE_4S;
-                                break;
-                            case "Samsung S42plus":
-                                terminal = Terminal.SAMSUNG_S42PLUS;
-                                break;
-                        }
-
-                        switch (SubscribtionType) {
-                            case "GreenMobil S":
+                        switch (subscription) {
+                            case GREEN_MOBIL_S:
                                 remainingDataVolumeMb = 0;
                                 chargingTotalEur = 8;
                                 remainingFreeMinutes = 0;
-                                subscribtionType = Subscription.GREEN_MOBIL_S;
+                                subscription = Subscription.GREEN_MOBIL_S;
                                 break;
-                            case "GreenMobile M":
+                            case GREEN_MOBIL_M:
                                 remainingDataVolumeMb = 100;
                                 chargingTotalEur = 22;
                                 remainingFreeMinutes = 100;
-                                subscribtionType = Subscription.GREEN_MOBIL_M;
+                                subscription = Subscription.GREEN_MOBIL_M;
                                 break;
-                            case "GreenMobile L":
+                            case GREEN_MOBIL_L:
                                 remainingDataVolumeMb = 150;
                                 chargingTotalEur = 42;
                                 remainingFreeMinutes = 150;
-                                subscribtionType = Subscription.GREEN_MOBIL_L;
+                                subscription = Subscription.GREEN_MOBIL_L;
                         }
                         mSIN = IMSIText.getText();
                         Subscriber.add(new Subscriber(remainingDataVolumeMb,
                                 chargingTotalEur,
                                 remainingFreeMinutes,
                                 ForenameText.getText(),
-                                SurenameText.getText(),
+                                SurnameText.getText(),
                                 mCC,
                                 mNC,
                                 mSIN,
                                 terminal,
-                                subscribtionType));
+                                subscription));
                     }
                 }
             }
