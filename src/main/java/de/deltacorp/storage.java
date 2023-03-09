@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONPointer;
+import org.mortbay.util.ajax.JSON;
 
 public class storage {
     
@@ -60,7 +61,7 @@ public class storage {
     }
 
     public void storeSessions(ArrayList<Session> sessions) {
-        JSONArray arr = this.readSessions();
+        JSONArray arr = new JSONArray();
         for (Session session : sessions) {
             JSONObject jsonSession = new JSONObject(session);
             arr.put(jsonSession);
@@ -69,7 +70,7 @@ public class storage {
     }
 
     public void storeInvoices(ArrayList<Invoice> invoices) {
-        JSONArray arr = this.readInvoices();
+        JSONArray arr = new JSONArray();
         for (Invoice invoice : invoices) {
             JSONObject jsonInvoice = new JSONObject(invoice);
             arr.put(jsonInvoice);
