@@ -13,12 +13,17 @@ import org.json.JSONObject;
 public class storage {
     
     private FileWriter writer;
+    private File directory = null;
     private File subscriberFile = null;
     private File sessionFile = null;
     private File invoiceFile = null;
 
     public storage() {
-        subscriberFile = new File("subscriber.json");
+        File dir = new File("data");
+        if (!dir.exists()){
+            dir.mkdirs();
+        }
+        subscriberFile = new File("data/subscriber.json");
         if(!subscriberFile.exists()) {
             try {
                 subscriberFile.createNewFile();
@@ -26,7 +31,7 @@ public class storage {
                 e.printStackTrace();
             }
         }
-        sessionFile = new File("session.json");
+        sessionFile = new File("data/session.json");
         if(!sessionFile.exists()){
             try {
                 sessionFile.createNewFile();
@@ -34,7 +39,7 @@ public class storage {
                 e.printStackTrace();
             }
         }
-        invoiceFile = new File("invoice.json");
+        invoiceFile = new File("data/invoice.json");
         if(!invoiceFile.exists()){
             try {
                 invoiceFile.createNewFile();
@@ -106,8 +111,8 @@ public class storage {
                                                    jsonSubscriber.getString("MCC"),
                                                    jsonSubscriber.getString("MNC"), 
                                                    jsonSubscriber.getString("MSIN"),
-                                                   (Terminal)jsonSubscriber.get("terminal"),
-                                                   (Subscription)jsonSubscriber.get("subscription"));
+                                                   jsonSubscriber.getEnum(Terminal.class,"terminal"),
+                                                   jsonSubscriber.getEnum(Subscription.class, "subscription"));
             array.add(subscriber);
         }
         return array;
@@ -125,7 +130,7 @@ public class storage {
             // Create Java Object from JSON Object
             Session session = new Session(jsonSession.getString("username"),
                                           jsonSession.getDouble("durationSeconds"),
-                                          (Service)jsonSession.get("service"));
+                                          jsonSession.getEnum(Service.class, "service"));
             array.add(session);
         }
         return array;
