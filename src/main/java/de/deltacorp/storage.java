@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.json.JSONPointer;
 
 public class storage {
     
@@ -58,39 +59,21 @@ public class storage {
         JSONArray jsonArray = readSubscribers();
         JSONObject jsonSubscriber = new JSONObject(subscriber);
         jsonArray.put(jsonSubscriber);
-        try {
-            writer = new FileWriter(subscriberFile.getAbsolutePath());
-            writer.write(jsonArray.toString());
-            writer.close();
-        } catch(IOException e){
-            e.printStackTrace();
-        }
+        helperWriteinFile(subscriberFile, jsonArray);
     }
 
     public void storeSession(Session session) {
         JSONArray jsonArray = readSessions();
         JSONObject jsonSessions = new JSONObject(session);
         jsonArray.put(jsonSessions);
-        try {
-            writer = new FileWriter(sessionFile.getAbsolutePath());
-            writer.write(jsonArray.toString());
-            writer.close();
-        } catch(IOException e){
-            e.printStackTrace();
-        }
+        helperWriteinFile(sessionFile, jsonArray);
     }
 
     public void storeInvoice(Invoice invoice) {
         JSONArray jsonArray = readInvoices();
         JSONObject jsonInvoices = new JSONObject(invoice);
         jsonArray.put(jsonInvoices);
-        try {
-            writer = new FileWriter(invoiceFile.getAbsolutePath());
-            writer.write(jsonArray.toString());
-            writer.close();
-        } catch(IOException e){
-            e.printStackTrace();
-        }
+        helperWriteinFile(invoiceFile, jsonArray);
     }
 
     /**
@@ -116,6 +99,33 @@ public class storage {
             array.add(subscriber);
         }
         return array;
+    }
+
+    public void editSubscriber(Subscriber subscriber) {
+        JSONArray jsonArray = this.readSubscribers();
+        String subImsi = subscriber.getMCC() + subscriber.getMNC() + subscriber.getMSIN();
+        for(int i = 0; i < jsonArray.length(); i++){
+            JSONObject jsonSubscriber = jsonArray.getJSONObject(i);
+            String jsonImsi = jsonSubscriber.getString("MCC") + jsonSubscriber.getString("MNC") +jsonSubscriber.getString("MSIN");
+            if (jsonImsi.equals(subImsi)) {
+                JSONObject editedJsonSubscriber = new JSONObject(subscriber);
+                jsonArray.put(i, editedJsonSubscriber);
+            }
+        }
+        helperWriteinFile(subscriberFile, jsonArray);
+    }
+
+    public void deleteSubscriber(Subscriber subscriber){
+        JSONArray jsonArray = this.readSubscribers();
+        String subImsi = subscriber.getMCC() + subscriber.getMNC() + subscriber.getMSIN();
+        for(int i = 0; i < jsonArray.length(); i++){
+            JSONObject jsonSubscriber = jsonArray.getJSONObject(i);
+            String jsonImsi = jsonSubscriber.getString("MCC") + jsonSubscriber.getString("MNC") +jsonSubscriber.getString("MSIN");
+            if (jsonImsi.equals(subImsi)) {
+                jsonArray.remove(i);
+            }
+        }
+        helperWriteinFile(subscriberFile, jsonArray);
     }
 
     /**
@@ -218,8 +228,11 @@ public class storage {
      * @param file which file to use
      */
     private void helperWriteFirstJSONArray(File file){
+        helperWriteinFile(file, new JSONArray());
+    }
+
+    private void helperWriteinFile(File file, JSONArray arr){
         try {
-            JSONArray arr = new JSONArray();
             writer = new FileWriter(file.getAbsolutePath());
             writer.write(arr.toString());
             writer.close();
