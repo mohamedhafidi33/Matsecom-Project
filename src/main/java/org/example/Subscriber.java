@@ -11,9 +11,9 @@ public class Subscriber {
 	private String MSIN;
 	private Terminal terminal;
 	private Subscription subscription;
+
 	public Subscriber(double remainingDataVolumeMb, double chargingTotalEur, double remainingFreeMinutes, String forename,
 			String surname, String mCC, String mNC, String mSIN, Terminal terminal, Subscription subscription) {
-		super();
 		this.remainingDataVolumeMb = remainingDataVolumeMb;
 		this.chargingTotalEur = chargingTotalEur;
 		this.remainingFreeMinutes = remainingFreeMinutes;

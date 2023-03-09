@@ -1,4 +1,4 @@
-package org.example;
+package de.deltacorp;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -16,8 +16,6 @@ import org.example.Terminal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-// FIXME Don't use testclass
-// swap with real classes
 public class storage {
     
     private FileWriter writer;
