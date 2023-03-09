@@ -22,5 +22,4 @@ public enum RanTechnology {
 		this.isSupportingVoiceCalls = isSupportingVoiceCalls;
 	}
 
-	
 }

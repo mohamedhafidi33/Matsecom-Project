@@ -20,20 +20,4 @@ public enum Subscription {
 		this.dataVolumeMB = dataVolumeMB;
 	}
 	
-	public String getName() {
-		return name;
-	}
-	public double getBasicfee() {
-		return basicfee;
-	}
-	public double getMinutesIncluded() {
-		return minutesIncluded;
-	}
-	public double getPricePerMinuteEuro() {
-		return pricePerMinuteEuro;
-	}
-	public double getDataVolumeMB() {
-		return dataVolumeMB;
-	}
-	
 }
