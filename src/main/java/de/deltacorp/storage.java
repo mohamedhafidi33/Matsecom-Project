@@ -7,12 +7,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 
-import org.example.Invoice;
-import org.example.Service;
-import org.example.Session;
-import org.example.Subscriber;
-import org.example.Subscription;
-import org.example.Terminal;
 import org.json.JSONArray;
 import org.json.JSONObject;
 

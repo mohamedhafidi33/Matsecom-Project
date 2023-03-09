@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.example;
+package de.deltacorp;
 
 /**
  * @author Hafidi
@@ -9,7 +9,7 @@ package org.example;
  */
 public enum Terminal {
 	PHAIR_PHONE("PhairPhone",new RanTechnology[] {RanTechnology.GSM,RanTechnology.HSPA}),
-	PEAR_APHONE_4s("Pear aphone 4s",new RanTechnology[] {RanTechnology.GSM,RanTechnology.HSPA}),
+	PEAR_APHONE_4S("Pear aphone 4s",new RanTechnology[] {RanTechnology.GSM,RanTechnology.HSPA}),
 	SAMSUNG_S42PLUS("Samsung S42plus",new RanTechnology[] {RanTechnology.GSM,RanTechnology.HSPA,RanTechnology.LTE});
 	
 	private String name;
