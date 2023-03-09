@@ -7,6 +7,11 @@ See "Build Project" for an example.
 
 Most IDEs support Run Configurations, with wizards for using maven matching to your project.
 
+## Build configurations
+
+If you have trouble with the build compilation, check your JAVA_HOME system environment variable.
+Please set your JDK to version 17 .
+
 # Build project
 
 Run `mvn install` (or wrapper call `mvnw install`).
