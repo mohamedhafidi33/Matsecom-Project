@@ -50,30 +50,31 @@ public class storage {
         }
     }
 
-    /**
-     * Stores Subscriber as JSONObject in subscriber file
-     * (Adds it to the exitsing JSONArray in the file)
-     * @param subscriber subscriber to add
-     */
-    public void storeSubscriber(Subscriber subscriber) {
-        JSONArray jsonArray = readSubscribers();
-        JSONObject jsonSubscriber = new JSONObject(subscriber);
-        jsonArray.put(jsonSubscriber);
-        helperWriteinFile(subscriberFile, jsonArray);
+    public void storeSubscribers(ArrayList<Subscriber> subscribers) {
+        JSONArray arr = this.readSubscribers();
+        for (Subscriber subscriber : subscribers) {
+            JSONObject jsonSubscriber = new JSONObject(subscriber);
+            arr.put(jsonSubscriber);
+        }
+        helperWriteinFile(subscriberFile, arr);
     }
 
-    public void storeSession(Session session) {
-        JSONArray jsonArray = readSessions();
-        JSONObject jsonSessions = new JSONObject(session);
-        jsonArray.put(jsonSessions);
-        helperWriteinFile(sessionFile, jsonArray);
+    public void storeSessions(ArrayList<Session> sessions) {
+        JSONArray arr = this.readSessions();
+        for (Session session : sessions) {
+            JSONObject jsonSession = new JSONObject(session);
+            arr.put(jsonSession);
+        }
+        helperWriteinFile(sessionFile, arr);
     }
 
-    public void storeInvoice(Invoice invoice) {
-        JSONArray jsonArray = readInvoices();
-        JSONObject jsonInvoices = new JSONObject(invoice);
-        jsonArray.put(jsonInvoices);
-        helperWriteinFile(invoiceFile, jsonArray);
+    public void storeInvoices(ArrayList<Invoice> invoices) {
+        JSONArray arr = this.readInvoices();
+        for (Invoice invoice : invoices) {
+            JSONObject jsonInvoice = new JSONObject(invoice);
+            arr.put(jsonInvoice);
+        }
+        helperWriteinFile(sessionFile, arr);
     }
 
     /**
@@ -99,33 +100,6 @@ public class storage {
             array.add(subscriber);
         }
         return array;
-    }
-
-    public void editSubscriber(Subscriber subscriber) {
-        JSONArray jsonArray = this.readSubscribers();
-        String subImsi = subscriber.getMCC() + subscriber.getMNC() + subscriber.getMSIN();
-        for(int i = 0; i < jsonArray.length(); i++){
-            JSONObject jsonSubscriber = jsonArray.getJSONObject(i);
-            String jsonImsi = jsonSubscriber.getString("MCC") + jsonSubscriber.getString("MNC") +jsonSubscriber.getString("MSIN");
-            if (jsonImsi.equals(subImsi)) {
-                JSONObject editedJsonSubscriber = new JSONObject(subscriber);
-                jsonArray.put(i, editedJsonSubscriber);
-            }
-        }
-        helperWriteinFile(subscriberFile, jsonArray);
-    }
-
-    public void deleteSubscriber(Subscriber subscriber){
-        JSONArray jsonArray = this.readSubscribers();
-        String subImsi = subscriber.getMCC() + subscriber.getMNC() + subscriber.getMSIN();
-        for(int i = 0; i < jsonArray.length(); i++){
-            JSONObject jsonSubscriber = jsonArray.getJSONObject(i);
-            String jsonImsi = jsonSubscriber.getString("MCC") + jsonSubscriber.getString("MNC") +jsonSubscriber.getString("MSIN");
-            if (jsonImsi.equals(subImsi)) {
-                jsonArray.remove(i);
-            }
-        }
-        helperWriteinFile(subscriberFile, jsonArray);
     }
 
     /**
