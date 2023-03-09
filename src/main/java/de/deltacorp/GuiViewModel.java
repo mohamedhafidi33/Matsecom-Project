@@ -23,36 +23,71 @@ public class GuiViewModel {
         return subscribers;
     }
 
-    // public ArrayList<Session> addSession(String forename, String surname, String time, String service){
-    //     Service usedService = null;
-    //     Subscriber sub = null;
-    //     for (Subscriber subscriber : subscribers) {
-    //         if(subscriber.forename == forename && subscriber.surname == surname) {
-    //             sub = subscriber;
-    //         }
-    //     }
-    //     switch (service) {
-    //         case "Voice call":
-    //             usedService = Service.VOICE_CALL;
-    //             break;
-    //         case "Browsing and social networking":
-    //             usedService = Service.BASN;
-    //             break;
-    //         case "App download":
-    //             usedService = Service.APL;
-    //             break;
-    //         case "Adaptive HD video":
-    //             usedService = Service.AHDV;
-    //             break;
-    //     };
-        
-    //     // Calculate COSTS
+    public ArrayList<Session> addSession(String forename, String surname, String time, String service){
+        Service usedService = null;
+        Subscriber sub = null;
+        Session session = null;
+        Double doubleTime = Double.parseDouble(time);
+        for (Subscriber subscriber : subscribers) {
+            if(subscriber.forename == forename && subscriber.surname == surname) {
+                sub = subscriber;
+            }
+        }
+        Terminal terminal = sub.terminal;
 
-    // }
+        switch (service) {
+            case "Voice call":
+                usedService = Service.VOICE_CALL;
+                sub.usedMinutes += doubleTime;
+                sub.remainingFreeMinutes -= sub.usedMinutes;
+                if (sub.remainingFreeMinutes < 0) {
+                    sub.chargingTotalEur += Math.abs(sub.remainingFreeMinutes) * sub.subscription.pricePerMinuteEuro;
+                }
+                session = new Session(surname, doubleTime, usedService);
+                break;
+            case "Browsing and social networking":
+                usedService = Service.BASN;
+                session = new Session(surname, doubleTime, usedService);
+                this.sessions.add(session);
+                break;
+            case "App download":
+                usedService = Service.APL;
+                session = new Session(surname, doubleTime, usedService);
+                this.sessions.add(session);
+                break;
+            case "Adaptive HD video":
+                usedService = Service.AHDV;
+                session = new Session(surname, doubleTime, usedService);
+                this.sessions.add(session);
+                break;
+        };
+        session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
+        if(session.getAchievableDatarateMbits() > usedService.demandedDatarateMbits) {
+            doubleTime = doubleTime * 60;
+            sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+            sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+            if (sub.remainingDataVolumeMb < 0) {
+                throw new IllegalArgumentException("Datavolume is empty");
+            }
+        }
+        sub.chargingTotalEur += sub.subscription.basicfee;
 
-    // public ArrayList<Invoice> addInvoice(){
-        
-    // }
+        return this.sessions;
+    }
+
+    public ArrayList<Invoice> addInvoice(){
+        for (Subscriber sub : subscribers) {
+            Invoice invoice = new Invoice(mCC + mNC + sub.getMSIN(), sub.forename + " " + sub.surname, sub.usedDataVolume, sub.usedMinutes, sub.chargingTotalEur);
+            sub.usedDataVolume = 0;
+            sub.usedDataVolume = 0;
+            sub.chargingTotalEur = 0;
+            sub.remainingFreeMinutes = sub.subscription.minutesIncluded;
+            sub.remainingDataVolumeMb = sub.subscription.dataVolumeMB;
+            invoices.add(invoice);
+        }
+        storage.storeInvoices(invoices);
+        return invoices;
+    }
 
     public ArrayList<Subscriber> getSubscribers() {
         this.subscribers = storage.getSubscribers();
