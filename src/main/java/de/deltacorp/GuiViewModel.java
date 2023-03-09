@@ -5,11 +5,35 @@ import java.util.ArrayList;
 public class GuiViewModel {
 
     private storage storage = new storage();
+    private ArrayList<Subscriber> subscribers = new ArrayList<Subscriber>();
 
-    public void addSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType){
+    public ArrayList<Subscriber> addSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType){
+        Subscriber sub = this.creatSubscriber(forename, surname, mSIN, TerminalType, SubscribtionType);
+        subscribers.add(sub);
+        return subscribers;
+    }
+
+    public ArrayList<Subscriber> getSubscribers() {
+        this.subscribers = storage.getSubscribers();
+        return this.subscribers;
+    }
+
+    public ArrayList<Subscriber> editSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType) {
         String mCC = "262";
         String mNC = "42";
         String iMSI = mCC + mNC + mSIN;
+        for (int i = 0; i < subscribers.size(); i++) {
+            if((mCC + mNC + subscribers.get(i).getMSIN()).equals(iMSI)) {
+                subscribers.set(i, creatSubscriber(forename, surname, mSIN, TerminalType, SubscribtionType));
+            }
+        }
+
+        return this.subscribers;
+    }
+
+    private Subscriber creatSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType) {
+        String mCC = "262";
+        String mNC = "42";
         Terminal terminal = null;
         Subscription subscribtionType = null;
         double remainingDataVolumeMb = 0;
@@ -47,12 +71,6 @@ public class GuiViewModel {
                 remainingFreeMinutes = 150;
                 subscribtionType = Subscription.GREEN_MOBIL_L;
         }
-        
-        Subscriber sub = new Subscriber(remainingDataVolumeMb, chargingTotalEur, remainingFreeMinutes, forename, surname, mCC, mNC, mSIN, terminal, subscribtionType);
-        storage.storeSubscriber(sub);
-    }
-
-    public ArrayList<Subscriber> getSubscribers() {
-        return storage.getSubscribers();
+        return new Subscriber(remainingDataVolumeMb, chargingTotalEur, remainingFreeMinutes, forename, surname, mCC, mNC, mSIN, terminal, subscribtionType);
     }
 }
