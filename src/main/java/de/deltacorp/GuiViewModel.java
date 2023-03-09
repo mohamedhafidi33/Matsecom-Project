@@ -99,10 +99,15 @@ public class GuiViewModel {
         return this.invoices;
     }
 
+    public static void main(String[] args) {
+        GuiViewModel viewmodel = new GuiViewModel();
+        viewmodel.addSubscriber("hannah", "klein", "17478284", "Phair Phone", "GreenMobil L");
+        System.out.println(viewmodel.getSubscribers().toString());
+    }
+
     public ArrayList<Subscriber> editSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType) {
-        String iMSI = mCC + mNC + mSIN;
         for (int i = 0; i < subscribers.size(); i++) {
-            if((mCC + mNC + subscribers.get(i).getMSIN()).equals(iMSI)) {
+            if((subscribers.get(i).getMSIN()).equals(mSIN)) {
                 subscribers.set(i, creatSubscriber(forename, surname, mSIN, TerminalType, SubscribtionType));
             }
         }
@@ -130,7 +135,7 @@ public class GuiViewModel {
         double remainingFreeMinutes = 0;
 
         switch (TerminalType) {
-            case "PhairPhone":
+            case "Phair Phone":
                 terminal = Terminal.PHAIR_PHONE;
                 break;
             case "Pear aphone 4s":
@@ -148,13 +153,13 @@ public class GuiViewModel {
                 remainingFreeMinutes = 0;
                 subscribtionType = Subscription.GREEN_MOBIL_S;
                 break;
-            case "GreenMobile M":
+            case "GreenMobil M":
                 remainingDataVolumeMb = 100;
                 chargingTotalEur = 22;
                 remainingFreeMinutes = 100;
                 subscribtionType = Subscription.GREEN_MOBIL_M;
                 break;
-            case "GreenMobile L":
+            case "GreenMobil L":
                 remainingDataVolumeMb = 150;
                 chargingTotalEur = 42;
                 remainingFreeMinutes = 150;
