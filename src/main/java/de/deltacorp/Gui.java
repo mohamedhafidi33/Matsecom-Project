@@ -1,5 +1,8 @@
 package de.deltacorp;
 
+import de.deltacorp.Terminal;
+import de.deltacorp.Subscription;
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.util.ArrayList;
@@ -32,6 +35,7 @@ public class Gui {
         ChooseMinutesOfSession.setModel(new SpinnerNumberModel(0,0,Integer.MAX_VALUE,1));
         JFormattedTextField tf = ((JSpinner.DefaultEditor) ChooseMinutesOfSession.getEditor()).getTextField();
         tf.setEditable(false);
+
         ChooseEditSubscriber.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -88,12 +92,15 @@ public class Gui {
                     String TerminalType = TerminalTypeDropDown.getItemAt(TerminalTypeDropDown.getSelectedIndex()).toString();
                     String SubscribtionType = SubscriptionTypeDropDown.getItemAt(SubscriberListDropDown.getSelectedIndex()).toString();
                     Terminal terminal;
-                    double remainingDataVolumeMb;
-                    double chargingTotalEur;
-                    double remainingFreeMinutes;
-                    String mCC = "42";
-                    String mNC="";
+                    terminal=Terminal.PHAIR_PHONE;
+                    double remainingDataVolumeMb = 0;
+                    double chargingTotalEur = 0;
+                    double remainingFreeMinutes = 0;
+                    String mCC = "262";
+                    String mNC = "42";
                     String mSIN;
+                    Subscription subscribtionType;
+                    subscribtionType = Subscription.GREEN_MOBIL_S;
 
                     switch (TerminalType) {
                         case "PhairPhone":
@@ -112,19 +119,31 @@ public class Gui {
                             remainingDataVolumeMb = 0;
                             chargingTotalEur = 8;
                             remainingFreeMinutes = 0;
+                            subscribtionType = Subscription.GREEN_MOBIL_S;
                             break;
                         case "GreenMobile M":
                             remainingDataVolumeMb = 100;
                             chargingTotalEur = 22;
                             remainingFreeMinutes = 100;
+                            subscribtionType = Subscription.GREEN_MOBIL_M;
                             break;
                         case "GreenMonile L":
                             remainingDataVolumeMb = 150;
                             chargingTotalEur = 42;
                             remainingFreeMinutes = 150;
+                            subscribtionType = Subscription.GREEN_MOBIL_L;
                     }
-                    mSIN = IMSIText.getText().substring(5);
-                    JOptionPane.showMessageDialog(null, mCC + "|" + mNC + "|" + mSIN);
+                    mSIN = IMSIText.getText();
+                    Subscriber.add(new Subscriber(remainingDataVolumeMb,
+                            chargingTotalEur,
+                            remainingFreeMinutes,
+                            ForenameText.getText(),
+                            SurenameText.getText(),
+                            mCC,
+                            mNC,
+                            mSIN,
+                            terminal,
+                            subscribtionType));
                 }
             }
         });
