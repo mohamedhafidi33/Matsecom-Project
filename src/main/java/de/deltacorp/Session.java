@@ -7,13 +7,13 @@ public class Session {
 	public double chargingEur;
 	private double achievableDatarateMbits;
 	private double demandedDatarateMbits;
-	private double UsedDataMb ;
-	private String username;
+	private double UsedDataMb = Math.min(achievableDatarateMbits, demandedDatarateMbits);
+	private String surname;
 	private double durationSeconds;
 	private Service service;
 	
-	public Session(String username, double durationSeconds, Service service) {
-		this.username = username;
+	public Session(String surname, double durationSeconds, Service service) {
+		this.surname = surname;
 		this.durationSeconds = durationSeconds;
 		this.service = service;
 	}
@@ -59,11 +59,11 @@ public class Session {
 	}
 
 	public String getUsername() {
-		return username;
+		return surname;
 	}
 
 	public void setUsername(String username) {
-		this.username = username;
+		this.surname = username;
 	}
 
 	public double getDurationSeconds() {
@@ -82,7 +82,7 @@ public class Session {
 		this.service = service;
 	}
 	
-	private double determineSignalStrength() {
+	public double determineSignalStrength() {
 		Random rd = new Random(); 
 		double random = rd.nextDouble();
 		double signalStrength = 0;

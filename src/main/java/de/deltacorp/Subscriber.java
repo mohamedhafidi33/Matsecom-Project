@@ -4,6 +4,8 @@ public class Subscriber {
 	public double remainingDataVolumeMb;
 	public double remainingFreeMinutes;
 	public double chargingTotalEur;
+	public double usedMinutes;
+	public double usedDataVolume;
 	public String forename;
 	public String surname;
 	private String MCC;
