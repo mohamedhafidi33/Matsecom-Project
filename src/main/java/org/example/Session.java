@@ -12,7 +12,6 @@ public class Session {
 	private Service service;
 	
 	public Session(String username, double durationSeconds, Service service) {
-		super();
 		this.username = username;
 		this.durationSeconds = durationSeconds;
 		this.service = service;

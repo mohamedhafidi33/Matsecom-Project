@@ -1,11 +1,9 @@
 package org.example;
 
-import java.io.Serializable;
-
 public class Subscriber {
-	private double dataVolumeMb;
-	private double chargingTotalEur;
+	private double remainingDataVolumeMb;
 	private double remainingFreeMinutes;
+	private double chargingTotalEur;
 	private String forename;
 	private String surname;
 	private String MCC;
@@ -13,10 +11,10 @@ public class Subscriber {
 	private String MSIN;
 	private Terminal terminal;
 	private Subscription subscription;
-	public Subscriber(double dataVolumeMb, double chargingTotalEur, double remainingFreeMinutes, String forename,
+	public Subscriber(double remainingDataVolumeMb, double chargingTotalEur, double remainingFreeMinutes, String forename,
 			String surname, String mCC, String mNC, String mSIN, Terminal terminal, Subscription subscription) {
 		super();
-		this.dataVolumeMb = dataVolumeMb;
+		this.remainingDataVolumeMb = remainingDataVolumeMb;
 		this.chargingTotalEur = chargingTotalEur;
 		this.remainingFreeMinutes = remainingFreeMinutes;
 		this.forename = forename;

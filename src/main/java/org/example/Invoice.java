@@ -9,9 +9,7 @@ public class Invoice {
 	
 	
 	
-	public Invoice(String subscriberImsi, String subscriberFullName, double usedDataMb, double usedMinutes,
-			double appliedChargesEur) {
-		super();
+	public Invoice(String subscriberImsi, String subscriberFullName, double usedDataMb, double usedMinutes, double appliedChargesEur) {
 		this.subscriberImsi = subscriberImsi;
 		this.subscriberFullName = subscriberFullName;
 		this.usedDataMb = usedDataMb;
