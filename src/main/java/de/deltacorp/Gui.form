@@ -56,8 +56,6 @@
         <properties>
           <model>
             <item value="Session Information:"/>
-            <item value="1) Voice Call,"/>
-            <item value="12min"/>
           </model>
         </properties>
       </component>
@@ -70,8 +68,6 @@
         <properties>
           <model>
             <item value="Subscriber Information:"/>
-            <item value="PhairPhone"/>
-            <item value="GreenMobile L"/>
           </model>
         </properties>
       </component>
@@ -226,9 +222,6 @@
         <properties>
           <model>
             <item value="Invoice Information:"/>
-            <item value="used minutes:23"/>
-            <item value="used Data:120MB"/>
-            <item value="left charges:0€"/>
           </model>
         </properties>
       </component>
@@ -313,7 +306,7 @@
         </constraints>
         <properties>
           <model>
-            <item value="PhairPhone"/>
+            <item value="Phair Phone"/>
             <item value="Pear aphone 4s"/>
             <item value="Samsung S42plus"/>
           </model>
