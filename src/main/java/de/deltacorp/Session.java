@@ -58,12 +58,12 @@ public class Session {
 		UsedDataMb = usedDataMb;
 	}
 
-	public String getUsername() {
+	public String getSurname() {
 		return surname;
 	}
 
-	public void setUsername(String username) {
-		this.surname = username;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public double getDurationSeconds() {
