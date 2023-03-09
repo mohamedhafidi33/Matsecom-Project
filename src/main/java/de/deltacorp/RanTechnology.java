@@ -1,7 +1,6 @@
-package org.example;
+package de.deltacorp;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public enum RanTechnology {
 	GSM("2G(GSM)",0.0,new HashMap<SignalStrength,Double>(),true),

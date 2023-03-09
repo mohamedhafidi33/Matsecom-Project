@@ -97,9 +97,27 @@
                                     </manifestEntries>
                                 </transformer>
                             </transformers>
+                            <filters>
+			                    <filter>
+			                        <artifact>*:*</artifact>
+			                        <excludes>
+			                            <exclude>META-INF/*.SF</exclude>
+			                            <exclude>META-INF/*.DSA</exclude>
+			                            <exclude>META-INF/*.RSA</exclude>
+			                        </excludes>
+			                    </filter>
+			                </filters>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compile-pluging</artifactId>
+            <version>3.8.1</version>
+            <configuration>
+            <release>17</release>
+            </configuration>
             </plugin>
         </plugins>
 
