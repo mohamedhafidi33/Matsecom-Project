@@ -61,7 +61,7 @@ public class GuiViewModel {
         };
         
         sub.chargingTotalEur += sub.subscription.basicfee;
-
+        storage.storeSessions(sessions);
         return this.sessions;
     }
 
