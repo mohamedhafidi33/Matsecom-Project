@@ -9,13 +9,10 @@ import java.util.ArrayList;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import org.json.JSONPointer;
-import org.mortbay.util.ajax.JSON;
 
 public class storage {
     
     private FileWriter writer;
-    private File directory = null;
     private File subscriberFile = null;
     private File sessionFile = null;
     private File invoiceFile = null;

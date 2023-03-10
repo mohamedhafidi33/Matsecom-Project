@@ -44,24 +44,23 @@ public class GuiViewModel {
             case "Browsing and social networking":
                 usedService = Service.BASN;
                 session = new Session(surname, doubleTime, usedService);
-                this.sessions.add(session);
                 helper(sub, session, terminal, doubleTime, usedService);
+                this.sessions.add(session);
                 break;
             case "App download":
                 usedService = Service.APL;
                 session = new Session(surname, doubleTime, usedService);
-                this.sessions.add(session);
                 helper(sub, session, terminal, doubleTime, usedService);
+                this.sessions.add(session);
                 break;
             case "Adaptive HD video":
                 usedService = Service.AHDV;
                 session = new Session(surname, doubleTime, usedService);
-                this.sessions.add(session);
                 helper(sub, session, terminal, doubleTime, usedService);
+                this.sessions.add(session);
                 break;
         };
         
-        sub.chargingTotalEur += sub.subscription.basicfee;
         storage.storeSessions(sessions);
         return this.sessions;
     }
@@ -80,6 +79,7 @@ public class GuiViewModel {
 
     public ArrayList<Invoice> addInvoice(){
         for (Subscriber sub : subscribers) {
+            sub.chargingTotalEur += sub.subscription.basicfee;
             Invoice invoice = new Invoice(mCC + mNC + sub.getMSIN(), sub.forename + " " + sub.surname, sub.usedDataVolume, sub.usedMinutes, sub.chargingTotalEur);
             sub.usedDataVolume = 0;
             sub.usedDataVolume = 0;
