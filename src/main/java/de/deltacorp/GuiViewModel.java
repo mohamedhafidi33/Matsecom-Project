@@ -24,7 +24,7 @@ public class GuiViewModel {
         Session session = null;
         Double doubleTime = Double.parseDouble(time);
         for (Subscriber subscriber : subscribers) {
-            if(subscriber.forename == forename && subscriber.surname == surname) {
+            if(subscriber.forename.equals(forename) && subscriber.surname.equals(surname)) {
                 sub = subscriber;
             }
         }
@@ -44,18 +44,28 @@ public class GuiViewModel {
                 usedService = Service.BASN;
                 session = new Session(surname, doubleTime, usedService);
                 this.sessions.add(session);
+                helper(sub, session, terminal, doubleTime, usedService);
                 break;
             case "App download":
                 usedService = Service.APL;
                 session = new Session(surname, doubleTime, usedService);
                 this.sessions.add(session);
+                helper(sub, session, terminal, doubleTime, usedService);
                 break;
             case "Adaptive HD video":
                 usedService = Service.AHDV;
                 session = new Session(surname, doubleTime, usedService);
                 this.sessions.add(session);
+                helper(sub, session, terminal, doubleTime, usedService);
                 break;
         };
+        
+        sub.chargingTotalEur += sub.subscription.basicfee;
+
+        return this.sessions;
+    }
+
+    private void helper(Subscriber sub, Session session, Terminal terminal, Double doubleTime, Service usedService) {
         session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
         if(session.getAchievableDatarateMbits() > usedService.demandedDatarateMbits) {
             doubleTime = doubleTime * 60;
@@ -65,9 +75,6 @@ public class GuiViewModel {
                 throw new IllegalArgumentException("Datavolume is empty");
             }
         }
-        sub.chargingTotalEur += sub.subscription.basicfee;
-
-        return this.sessions;
     }
 
     public ArrayList<Invoice> addInvoice(){
