@@ -36,7 +36,7 @@ public class GuiViewModel {
                 sub.usedMinutes += doubleTime;
                 sub.remainingFreeMinutes -= sub.usedMinutes;
                 if (sub.remainingFreeMinutes < 0) {
-                    sub.chargingTotalEur += Math.abs(sub.remainingFreeMinutes) * sub.subscription.pricePerMinuteEuro;
+                    sub.chargingTotalEur += (sub.usedMinutes - sub.subscription.minutesIncluded) * sub.subscription.pricePerMinuteEuro;
                 }
                 session = new Session(surname, doubleTime, usedService);
                 this.sessions.add(session);
