@@ -47,8 +47,17 @@ public class GuiViewModel {
                 session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
                 if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
                     doubleTime = doubleTime * 60;
-                    sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
-                    sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    if (sub.remainingDataVolumeMb - ((session.getAchievableDatarateMbits() * doubleTime) / 8) < 0) {
+                        sub.remainingDataVolumeMb = 0;
+                        throw new IllegalArgumentException("Service interrupted due to no remaining Data volume");
+                    } else {
+                        sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    }
+                    if (sub.usedDataVolume + ((session.getAchievableDatarateMbits() * doubleTime) / 8) > sub.subscription.dataVolumeMB) {
+                        sub.usedDataVolume = sub.subscription.dataVolumeMB;
+                    } else {
+                        sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    }
                     if (sub.remainingDataVolumeMb < 0) {
                         throw new IllegalArgumentException("Datavolume is empty");
                     }
@@ -63,8 +72,17 @@ public class GuiViewModel {
                 session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
                 if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
                     doubleTime = doubleTime * 60;
-                    sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
-                    sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    if (sub.remainingDataVolumeMb - ((session.getAchievableDatarateMbits() * doubleTime) / 8) < 0) {
+                        sub.remainingDataVolumeMb = 0;
+                        throw new IllegalArgumentException("Service interrupted due to no remaining Data volume");
+                    } else {
+                        sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    }
+                    if (sub.usedDataVolume + ((session.getAchievableDatarateMbits() * doubleTime) / 8) > sub.subscription.dataVolumeMB) {
+                        sub.usedDataVolume = sub.subscription.dataVolumeMB;
+                    } else {
+                        sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    }
                     if (sub.remainingDataVolumeMb < 0) {
                         throw new IllegalArgumentException("Datavolume is empty");
                     }
@@ -79,8 +97,17 @@ public class GuiViewModel {
                 session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
                 if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
                     doubleTime = doubleTime * 60;
-                    sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
-                    sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    if (sub.remainingDataVolumeMb - ((session.getAchievableDatarateMbits() * doubleTime) / 8) < 0) {
+                        sub.remainingDataVolumeMb = 0;
+                        throw new IllegalArgumentException("Service interrupted due to no remaining Data volume");
+                    } else {
+                        sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    }
+                    if (sub.usedDataVolume + ((session.getAchievableDatarateMbits() * doubleTime) / 8) > sub.subscription.dataVolumeMB) {
+                        sub.usedDataVolume = sub.subscription.dataVolumeMB;
+                    } else {
+                        sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    }
                     if (sub.remainingDataVolumeMb < 0) {
                         throw new IllegalArgumentException("Datavolume is empty");
                     }
