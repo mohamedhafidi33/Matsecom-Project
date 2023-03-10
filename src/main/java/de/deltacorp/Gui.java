@@ -38,10 +38,10 @@ public class Gui {
     private JComboBox InvoiceDropDownList;
     private JComboBox SessionDropDownList;
     public void updateSessionDropDown(){
-        SessionDropDownList.removeAllItems();
         if(sessions==null){
             SessionDropDownList.setEnabled(false);
         } else {
+            SessionDropDownList.removeAllItems();
             SessionDropDownList.setEnabled(true);
             for(Session x: sessions){
                 SessionDropDownList.addItem(x.getSurname());
@@ -50,10 +50,11 @@ public class Gui {
     }
 
     public void updateInvoiceDropDown(){
-        InvoiceDropDownList.removeAllItems();
+
         if(invoices==null){
             InvoiceDropDownList.setEnabled(false);
         } else {
+            InvoiceDropDownList.removeAllItems();
             InvoiceDropDownList.setEnabled(true);
             for (Invoice x: invoices){
                 InvoiceDropDownList.addItem(x.getSubscriberFullName());
@@ -62,14 +63,14 @@ public class Gui {
     }
 
     public void updateSubscriberDropDown(){
-        ChooseSubscriberSession.removeAllItems();
-        SubscriberListDropDown.removeAllItems();
         ChooseEditSubscriber.removeAllItems();
         ChooseEditSubscriber.addItem("*new Subscriber");
         if(subscribers==null){
             SubscriberListDropDown.setEnabled(false);
             ChooseSubscriberSession.setEnabled(false);
         } else {
+            ChooseSubscriberSession.removeAllItems();
+            SubscriberListDropDown.removeAllItems();
             SubscriberListDropDown.setEnabled(true);
             ChooseSubscriberSession.setEnabled(true);
             for(Subscriber x: subscribers){
@@ -242,14 +243,19 @@ public class Gui {
         InvoiceDropDownList.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                for(Invoice x: invoices){
-                    if(x.getSubscriberFullName().toString()==InvoiceDropDownList.getSelectedItem().toString()){
-                        DefaultListModel listModel = new DefaultListModel<>();
-                        listModel.addElement("Invoices from " + x.getSubscriberFullName());
-                        listModel.addElement("Used Minutes:" + x.getUsedMinutes());
-                        listModel.addElement("Left Charges:" + x.getAppliedChargesEur() + "€");
-                        listModel.addElement("Used Data:" + x.getUsedDataMb() + "Mb");
+                DefaultListModel listModel = new DefaultListModel<>();
+                if(invoices==null){
+                    listModel.addElement("No Invoices.");
+                } else {
+                    for (Invoice x : invoices) {
+                        if (x.getSubscriberFullName().toString() == InvoiceDropDownList.getSelectedItem().toString()) {
+                            listModel.addElement("Invoices from " + x.getSubscriberFullName());
+                            listModel.addElement("Used Minutes:" + x.getUsedMinutes());
+                            listModel.addElement("Left Charges:" + x.getAppliedChargesEur() + "€");
+                            listModel.addElement("Used Data:" + x.getUsedDataMb() + "Mb");
+                        }
                     }
+                    list3.setModel(listModel);
                 }
             }
         });
