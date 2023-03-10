@@ -236,26 +236,34 @@ public class Gui {
         callInvoiceButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                invoices = guiViewModel.addInvoice();
-                updateInvoiceDropDown();
+                if(subscribers!=null){
+                    invoices = guiViewModel.addInvoice();
+                    updateInvoiceDropDown();
+                } else {
+                    JOptionPane.showMessageDialog(null, "You should add an Subscriber.");
+                }
             }
         });
         InvoiceDropDownList.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                DefaultListModel listModel = new DefaultListModel<>();
-                if(invoices==null){
-                    listModel.addElement("No Invoices.");
+                if(InvoiceDropDownList.getSelectedItem()==null){
+                    //JOptionPane.showMessageDialog(null,"Something went wrong, please try again.");
                 } else {
-                    for (Invoice x : invoices) {
-                        if (x.getSubscriberFullName().toString() == InvoiceDropDownList.getSelectedItem().toString()) {
-                            listModel.addElement("Invoices from " + x.getSubscriberFullName());
-                            listModel.addElement("Used Minutes:" + x.getUsedMinutes());
-                            listModel.addElement("Left Charges:" + x.getAppliedChargesEur() + "€");
-                            listModel.addElement("Used Data:" + x.getUsedDataMb() + "Mb");
+                    DefaultListModel listModel = new DefaultListModel<>();
+                    if (invoices == null) {
+                        listModel.addElement("No Invoices.");
+                    } else {
+                        for (Invoice x : invoices) {
+                            if (x.getSubscriberFullName().toString() == InvoiceDropDownList.getSelectedItem().toString()) {
+                                listModel.addElement("Invoices from " + x.getSubscriberFullName());
+                                listModel.addElement("Used Minutes:" + x.getUsedMinutes());
+                                listModel.addElement("Left Charges:" + x.getAppliedChargesEur() + "€");
+                                listModel.addElement("Used Data:" + x.getUsedDataMb() + "Mb");
+                            }
                         }
+                        list3.setModel(listModel);
                     }
-                    list3.setModel(listModel);
                 }
             }
         });
