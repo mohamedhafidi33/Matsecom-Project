@@ -34,7 +34,11 @@ public class GuiViewModel {
             case "Voice call":
                 usedService = Service.VOICE_CALL;
                 sub.usedMinutes += doubleTime;
-                sub.remainingFreeMinutes -= sub.usedMinutes;
+                if(sub.remainingFreeMinutes - sub.usedMinutes <= 0) {
+                    sub.remainingFreeMinutes = 0;
+                } else {
+                    sub.remainingFreeMinutes -= sub.usedMinutes;
+                }
                 if (sub.remainingFreeMinutes < 0) {
                     sub.chargingTotalEur += (sub.usedMinutes - sub.subscription.minutesIncluded) * sub.subscription.pricePerMinuteEuro;
                 }
