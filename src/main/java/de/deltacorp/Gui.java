@@ -43,8 +43,14 @@ public class Gui {
         } else {
             SessionDropDownList.removeAllItems();
             SessionDropDownList.setEnabled(true);
+            ArrayList<String> doubleName = new ArrayList<String>();
             for (Session x : sessions) {
-                SessionDropDownList.addItem(x.getSurname());
+                if(doubleName.contains(x.getSurname())){
+
+                } else {
+                    SessionDropDownList.addItem(x.getSurname());
+                    doubleName.add(x.getSurname());
+                }
             }
         }
     }
