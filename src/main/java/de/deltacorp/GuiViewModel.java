@@ -79,6 +79,7 @@ public class GuiViewModel {
     }
 
     public ArrayList<Invoice> addInvoice(){
+        invoices.clear();
         for (Subscriber sub : subscribers) {
             Invoice invoice = new Invoice(mCC + mNC + sub.getMSIN(), sub.forename + " " + sub.surname, sub.usedDataVolume, sub.usedMinutes, sub.chargingTotalEur);
             sub.usedDataVolume = 0;
