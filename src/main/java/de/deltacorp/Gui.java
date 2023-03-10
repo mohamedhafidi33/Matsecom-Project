@@ -221,14 +221,15 @@ public class Gui {
         SessionDropDownList.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+                DefaultListModel listModel = new DefaultListModel<>();
                 for(Session x: sessions){
                     if(x.getSurname()==SessionDropDownList.getSelectedItem()){
-                        DefaultListModel listModel = new DefaultListModel<>();
-                        listModel.add(0,"Sessioninformation from " + x.getSurname());
-                        listModel.addElement(x.getService());
-                        listModel.addElement(x.getDurationSeconds());
+                        listModel.addElement("Sessioninformation from " + x.getSurname());
+                        listModel.addElement("Used:" + x.getService());
+                        listModel.addElement("Duration:" + x.getDurationSeconds());
                     }
                 }
+                list2.setModel(listModel);
             }
         });
         callInvoiceButton.addActionListener(new ActionListener() {
@@ -242,12 +243,12 @@ public class Gui {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 for(Invoice x: invoices){
-                    if(x.getSubscriberFullName()==SessionDropDownList.getSelectedItem()){
+                    if(x.getSubscriberFullName().toString()==InvoiceDropDownList.getSelectedItem().toString()){
                         DefaultListModel listModel = new DefaultListModel<>();
-                        listModel.add(0,"Sessioninformation from " + x.getSubscriberFullName());
-                        listModel.add(1,"Used Minutes:" + x.getUsedMinutes());
-                        listModel.add(2,"Left Charges:" + x.getAppliedChargesEur() + "€");
-                        listModel.add(3,"Used Data:" + x.getUsedDataMb() + "Mb");
+                        listModel.addElement("Invoices from " + x.getSubscriberFullName());
+                        listModel.addElement("Used Minutes:" + x.getUsedMinutes());
+                        listModel.addElement("Left Charges:" + x.getAppliedChargesEur() + "€");
+                        listModel.addElement("Used Data:" + x.getUsedDataMb() + "Mb");
                     }
                 }
             }
