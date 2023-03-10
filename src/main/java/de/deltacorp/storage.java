@@ -110,7 +110,8 @@ public class storage {
         for (int i = 0; i < jsonArray.length(); i++){
             JSONObject jsonSession = jsonArray.getJSONObject(i);
             // Create Java Object from JSON Object
-            Session session = new Session(jsonSession.getString("surname"),
+            Session session = new Session(jsonSession.getString("forename"),
+                                          jsonSession.getString("surname"),
                                           jsonSession.getDouble("durationMinutes"),
                                           jsonSession.getEnum(Service.class, "service"));
             array.add(session);
