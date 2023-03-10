@@ -88,7 +88,7 @@ public class GuiViewModel {
             sub.remainingDataVolumeMb = sub.subscription.dataVolumeMB;
             invoices.add(invoice);
         }
-        storage.storeInvoices(invoices);
+        // storage.storeInvoices(invoices);
         return invoices;
     }
 
@@ -103,7 +103,7 @@ public class GuiViewModel {
     }
 
     public ArrayList<Invoice> getInvoices() {
-        this.invoices = storage.getInvoices();
+        // this.invoices = storage.getInvoices();
         return this.invoices;
     }
 
