@@ -84,18 +84,17 @@ public class Session {
 	}
 	
 	public double determineSignalStrength() {
-		Random rd = new Random(); 
-		double random = rd.nextDouble();
+		double random = Math.random();
 		if(random>=0.5) {
 			signalStrength=0.5;
 		}
-		if(random>=0.25) {
+		else if(random>=0.25) {
 			signalStrength=0.25;
 		}
-		if(random>=0.1) {
+		else if(random>=0.1) {
 			signalStrength=0.1;
 		}
-		if(random<0.1) {
+		else if(random<0.1) {
 			signalStrength=0.0;
 		}
 		return signalStrength;

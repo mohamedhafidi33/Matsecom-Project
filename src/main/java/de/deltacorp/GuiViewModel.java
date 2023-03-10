@@ -122,6 +122,12 @@ public class GuiViewModel {
         return this.sessions;
     }
 
+    public static void main(String[] args) {
+        GuiViewModel vm = new GuiViewModel();
+        vm.addSubscriber("Hannah", "Klein", "9829872689", "Samsung S42plus", "GreenMobil L");
+        vm.addSession("Hannah", "Klein", "9", "Adaptive HD video");
+    }
+
     public ArrayList<Invoice> addInvoice(){
         invoices.clear();
         for (Subscriber sub : subscribers) {
@@ -150,12 +156,6 @@ public class GuiViewModel {
     public ArrayList<Invoice> getInvoices() {
         // this.invoices = storage.getInvoices();
         return this.invoices;
-    }
-
-    public static void main(String[] args) {
-        GuiViewModel viewmodel = new GuiViewModel();
-        viewmodel.addSubscriber("hannah", "klein", "17478284", "Phair Phone", "GreenMobil L");
-        System.out.println(viewmodel.getSubscribers().toString());
     }
 
     public ArrayList<Subscriber> editSubscriber(String forename, String surname, String mSIN, String TerminalType, String SubscribtionType) {
