@@ -39,6 +39,7 @@ public class GuiViewModel {
                     sub.chargingTotalEur += Math.abs(sub.remainingFreeMinutes) * sub.subscription.pricePerMinuteEuro;
                 }
                 session = new Session(surname, doubleTime, usedService);
+                this.sessions.add(session);
                 break;
             case "Browsing and social networking":
                 usedService = Service.BASN;
