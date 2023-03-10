@@ -93,7 +93,29 @@ public class Gui {
         updateSubscriberDropDown();
         updateSessionDropDown();
         updateInvoiceDropDown();
-
+        {
+            DefaultListModel listModel = new DefaultListModel<>();
+            for (Session x : sessions) {
+                if (x.getSurname() == SessionDropDownList.getSelectedItem()) {
+                    listModel.addElement("Sessioninformation from " + x.getSurname());
+                    listModel.addElement("Used:" + x.getService());
+                    listModel.addElement("Duration:" + x.getDurationSeconds());
+                    listModel.addElement("Signal strenght:" + x.signalStrength);
+                }
+            }
+            list2.setModel(listModel);
+        }
+        if(subscribers!=null){
+            DefaultListModel listModel = new DefaultListModel<>();
+            listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
+            for(Subscriber x : subscribers){
+                if(x.getMSIN()==SubscriberListDropDown.getSelectedItem()){
+                    listModel.add(1, x.terminal.name);
+                    listModel.add(2,x.subscription.name);
+                }
+            }
+            list1.setModel(listModel);
+        }
         ChooseEditSubscriber.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
