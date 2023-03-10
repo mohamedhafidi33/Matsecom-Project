@@ -5,7 +5,7 @@ import java.util.Random;
 public class Session {
 	private RanTechnology ranTechnology;
 	public double chargingEur;
-	public double signalStrength = 0;
+	public double signalStrength = 1;
 	private double achievableDatarateMbits;
 	private double demandedDatarateMbits;
 	private double UsedDataMb = Math.min(achievableDatarateMbits, demandedDatarateMbits);
