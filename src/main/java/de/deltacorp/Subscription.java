@@ -2,8 +2,8 @@ package de.deltacorp;
 
 public enum Subscription {
 	GREEN_MOBIL_S("GreenMobil S",8,0,0.08,500),
-	GREEN_MOBIL_M("GreenMobil M",22,100,0.06,2),
-	GREEN_MOBIL_L("GreenMobil L",42,150,0.04,5);
+	GREEN_MOBIL_M("GreenMobil M",22,100,0.06,2000),
+	GREEN_MOBIL_L("GreenMobil L",42,150,0.04,5000);
 	
 	public final String name;
 	public final double basicfee;

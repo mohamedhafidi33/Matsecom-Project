@@ -156,19 +156,19 @@ public class GuiViewModel {
 
         switch (SubscribtionType) {
             case "GreenMobil S":
-                remainingDataVolumeMb = 0;
+                remainingDataVolumeMb = 500;
                 chargingTotalEur = 8;
                 remainingFreeMinutes = 0;
                 subscribtionType = Subscription.GREEN_MOBIL_S;
                 break;
             case "GreenMobil M":
-                remainingDataVolumeMb = 100;
+                remainingDataVolumeMb = 2000;
                 chargingTotalEur = 22;
                 remainingFreeMinutes = 100;
                 subscribtionType = Subscription.GREEN_MOBIL_M;
                 break;
             case "GreenMobil L":
-                remainingDataVolumeMb = 150;
+                remainingDataVolumeMb = 5000;
                 chargingTotalEur = 42;
                 remainingFreeMinutes = 150;
                 subscribtionType = Subscription.GREEN_MOBIL_L;
