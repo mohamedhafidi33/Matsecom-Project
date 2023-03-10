@@ -99,7 +99,7 @@ public class Gui {
                 if (x.getSurname() == SessionDropDownList.getSelectedItem()) {
                     listModel.addElement("Sessioninformation from " + x.getSurname());
                     listModel.addElement("Used:" + x.getService());
-                    listModel.addElement("Duration:" + x.getDurationSeconds());
+                    listModel.addElement("Duration:" + x.getDurationMinutes() + "min.");
                     listModel.addElement("Signal strenght:" + x.signalStrength);
                 }
             }
@@ -255,7 +255,7 @@ public class Gui {
                     if(x.getSurname()==SessionDropDownList.getSelectedItem()){
                         listModel.addElement("Sessioninformation from " + x.getSurname());
                         listModel.addElement("Used:" + x.getService());
-                        listModel.addElement("Duration:" + x.getDurationSeconds());
+                        listModel.addElement("Duration:" + x.getDurationMinutes()+ "min.");
                         listModel.addElement("Signal strenght:" + x.signalStrength);
                     }
                 }
