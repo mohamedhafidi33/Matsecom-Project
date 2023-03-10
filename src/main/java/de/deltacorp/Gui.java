@@ -43,7 +43,7 @@ public class Gui {
         } else {
             SessionDropDownList.removeAllItems();
             SessionDropDownList.setEnabled(true);
-            for(Session x: sessions){
+            for (Session x : sessions) {
                 SessionDropDownList.addItem(x.getSurname());
             }
         }
@@ -211,7 +211,7 @@ public class Gui {
                             try {
                                 sessions = guiViewModel.addSession(x.forename, x.surname, ChooseMinutesOfSession.getValue().toString(), ChooseServiceSession.getSelectedItem().toString());
                             } catch (IllegalArgumentException illegalArgumentException) {
-                                JOptionPane.showMessageDialog(null, illegalArgumentException.getMessage());
+                                JOptionPane.showMessageDialog(null, illegalArgumentException.getMessage() + ".");
                             }
                         }
                     }
@@ -228,6 +228,7 @@ public class Gui {
                         listModel.addElement("Sessioninformation from " + x.getSurname());
                         listModel.addElement("Used:" + x.getService());
                         listModel.addElement("Duration:" + x.getDurationSeconds());
+                        listModel.addElement("Signal strenght:" + x.signalStrength);
                     }
                 }
                 list2.setModel(listModel);
