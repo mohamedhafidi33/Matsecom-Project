@@ -39,7 +39,7 @@ public class GuiViewModel {
                 } else {
                     sub.remainingFreeMinutes -= sub.usedMinutes;
                 }
-                if (sub.remainingFreeMinutes < 0) {
+                if (sub.remainingFreeMinutes <= 0) {
                     sub.chargingTotalEur += (sub.usedMinutes - sub.subscription.minutesIncluded) * sub.subscription.pricePerMinuteEuro;
                 }
                 session = new Session(forename, surname, doubleTime, usedService);
