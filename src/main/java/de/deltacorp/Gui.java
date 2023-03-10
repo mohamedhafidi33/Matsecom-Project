@@ -45,11 +45,11 @@ public class Gui {
             SessionDropDownList.setEnabled(true);
             ArrayList<String> doubleName = new ArrayList<String>();
             for (Session x : sessions) {
-                if(doubleName.contains(x.getSurname())){
+                if(doubleName.contains(x.getForename() + " " + x.getSurname())){
 
                 } else {
-                    SessionDropDownList.addItem(x.getSurname());
-                    doubleName.add(x.getSurname());
+                    SessionDropDownList.addItem(x.getForename() + " " + x.getSurname());
+                    doubleName.add(x.getForename() + " " + x.getSurname());
                 }
             }
         }
@@ -80,9 +80,9 @@ public class Gui {
             SubscriberListDropDown.setEnabled(true);
             ChooseSubscriberSession.setEnabled(true);
             for(Subscriber x: subscribers){
-                ChooseSubscriberSession.addItem(x.getMSIN());
-                ChooseEditSubscriber.addItem(x.getMSIN());
-                SubscriberListDropDown.addItem(x.getSurname());
+                ChooseSubscriberSession.addItem(x.forename + " " + x.getSurname());
+                ChooseEditSubscriber.addItem(x.forename + " " + x.getSurname());
+                SubscriberListDropDown.addItem(x.forename + " " + x.getSurname());
             }
         }
     }
@@ -94,22 +94,9 @@ public class Gui {
         updateSessionDropDown();
         updateInvoiceDropDown();
         {
-            if(subscribers!=null){
-                DefaultListModel listModel = new DefaultListModel<>();
-                listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
-                for(Subscriber x : subscribers){
-                    if(x.getForename()==SubscriberListDropDown.getSelectedItem().toString()){
-                        listModel.add(1, x.terminal.name);
-                        listModel.add(2,x.subscription.name);
-                    }
-                }
-                list1.setModel(listModel);
-            }
-        }
-        {
             DefaultListModel listModel = new DefaultListModel<>();
             for (Session x : sessions) {
-                if (x.getSurname() == SessionDropDownList.getSelectedItem()) {
+                if (SessionDropDownList.getSelectedItem().toString().equals(x.getForename() + " " + x.getSurname())) {
                     listModel.addElement("Sessioninformation from " + x.getSurname());
                     listModel.addElement("Used:" + x.getService());
                     listModel.addElement("Duration:" + x.getDurationMinutes() + "min.");
@@ -122,7 +109,7 @@ public class Gui {
             DefaultListModel listModel = new DefaultListModel<>();
             listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
             for(Subscriber x : subscribers){
-                if(x.getForename()==SubscriberListDropDown.getSelectedItem().toString()){
+                if(SubscriberListDropDown.getSelectedItem().toString().equals(x.forename + " " + x.surname)){
                     listModel.add(1, x.terminal.name);
                     listModel.add(2,x.subscription.name);
                 }
@@ -143,7 +130,7 @@ public class Gui {
                         IMSIText.setEditable(true);
                     } else {
                         for(Subscriber x: subscribers){
-                            if(x.getMSIN()==ChooseEditSubscriber.getSelectedItem().toString()){
+                            if(ChooseEditSubscriber.getSelectedItem().toString().equals(x.forename + " " + x.surname)){
                                 ForenameText.setText(x.forename);
                                 SurnameText.setText(x.surname);
                                 IMSIText.setText(x.getMSIN());
@@ -230,11 +217,10 @@ public class Gui {
                     DefaultListModel listModel = new DefaultListModel<>();
                     listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
                     for(Subscriber x : subscribers){
-                        if(x.getForename() == SubscriberListDropDown.getSelectedItem().toString()){
+                        if(SubscriberListDropDown.getSelectedItem().toString().equals(x.forename + " " + x.surname)){
                             listModel.add(1, x.terminal.name);
                             listModel.add(2,x.subscription.name);
                         }
-                        JOptionPane.showMessageDialog(null,"works:" + x.forename + ":" + SubscriberListDropDown.getSelectedItem() == x.forename);
                     }
                     list1.setModel(listModel);
                 }
@@ -249,7 +235,7 @@ public class Gui {
                     JOptionPane.showMessageDialog(null, "You should firt register a Subscriber.");
                 } else {
                     for (Subscriber x : subscribers) {
-                        if (x.getMSIN() == ChooseSubscriberSession.getSelectedItem()) {
+                        if (ChooseSubscriberSession.getSelectedItem().toString().equals(x.forename + " " + x.surname)) {
                             try {
                                 sessions = guiViewModel.addSession(x.forename, x.surname, ChooseMinutesOfSession.getValue().toString(), ChooseServiceSession.getSelectedItem().toString());
                             } catch (IllegalArgumentException illegalArgumentException) {
@@ -264,16 +250,20 @@ public class Gui {
         SessionDropDownList.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                DefaultListModel listModel = new DefaultListModel<>();
-                for(Session x: sessions){
-                    if(x.getSurname()==SessionDropDownList.getSelectedItem()){
-                        listModel.addElement("Sessioninformation from " + x.getSurname());
-                        listModel.addElement("Used:" + x.getService());
-                        listModel.addElement("Duration:" + x.getDurationMinutes()+ "min.");
-                        listModel.addElement("Signal strength:" + x.signalStrength);
+                if (SessionDropDownList.getSelectedItem() != null) {
+
+
+                    DefaultListModel listModel = new DefaultListModel<>();
+                    for (Session x : sessions) {
+                        if (SessionDropDownList.getSelectedItem().toString().equals(x.getForename() + " " + x.getSurname())) {
+                            listModel.addElement("Sessioninformation from " + x.getSurname());
+                            listModel.addElement("Used:" + x.getService());
+                            listModel.addElement("Duration:" + x.getDurationMinutes() + "min.");
+                            listModel.addElement("Signal strength:" + x.signalStrength);
+                        }
                     }
+                    list2.setModel(listModel);
                 }
-                list2.setModel(listModel);
             }
         });
         callInvoiceButton.addActionListener(new ActionListener() {
