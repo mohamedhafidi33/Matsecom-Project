@@ -142,6 +142,7 @@ public class GuiViewModel {
             Invoice invoice = new Invoice(mCC + mNC + sub.getMSIN(), sub.forename + " " + sub.surname, sub.usedDataVolume, sub.usedMinutes, sub.chargingTotalEur);
             sub.usedDataVolume = 0;
             sub.usedDataVolume = 0;
+            sub.usedMinutes = 0;
             sub.chargingTotalEur = sub.subscription.basicfee;
             sub.remainingFreeMinutes = sub.subscription.minutesIncluded;
             sub.remainingDataVolumeMb = sub.subscription.dataVolumeMB;
