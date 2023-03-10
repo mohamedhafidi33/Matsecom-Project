@@ -75,7 +75,7 @@ public class storage {
             JSONObject jsonInvoice = new JSONObject(invoice);
             arr.put(jsonInvoice);
         }
-        helperWriteinFile(sessionFile, arr);
+        helperWriteinFile(invoiceFile, arr);
     }
 
     /**
