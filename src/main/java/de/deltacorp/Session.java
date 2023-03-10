@@ -10,11 +10,13 @@ public class Session {
 	private double demandedDatarateMbits;
 	private double UsedDataMb = Math.min(achievableDatarateMbits, demandedDatarateMbits);
 	private String surname;
+	private String forename;
 	private double durationMinutes;
 	private Service service;
 	
-	public Session(String surname, double durationMinutes, Service service) {
+	public Session(String forename, String surname, double durationMinutes, Service service) {
 		this.surname = surname;
+		this.forename = forename;
 		this.durationMinutes = durationMinutes;
 		this.service = service;
 	}
@@ -65,6 +67,14 @@ public class Session {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+
+	public String getForename() {
+		return forename;
+	}
+
+	public void setForename(String forename) {
+		this.forename = forename;
 	}
 
 	public double getDurationMinutes() {

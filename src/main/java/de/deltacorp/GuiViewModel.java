@@ -42,12 +42,12 @@ public class GuiViewModel {
                 if (sub.remainingFreeMinutes < 0) {
                     sub.chargingTotalEur += (sub.usedMinutes - sub.subscription.minutesIncluded) * sub.subscription.pricePerMinuteEuro;
                 }
-                session = new Session(surname, doubleTime, usedService);
+                session = new Session(forename, surname, doubleTime, usedService);
                 this.sessions.add(session);
                 break;
             case "Browsing and social networking":
                 usedService = Service.BASN;
-                session = new Session(surname, doubleTime, usedService);
+                session = new Session(forename ,surname, doubleTime, usedService);
                 session.setDemandedDatarateMbits(usedService.demandedDatarateMbits);
                 session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
                 if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
@@ -74,7 +74,7 @@ public class GuiViewModel {
                 break;
             case "App download":
                 usedService = Service.APL;
-                session = new Session(surname, doubleTime, usedService);
+                session = new Session(forename ,surname, doubleTime, usedService);
                 session.setDemandedDatarateMbits(usedService.demandedDatarateMbits);
                 session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
                 if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
@@ -100,7 +100,7 @@ public class GuiViewModel {
                 break;
             case "Adaptive HD video":
                 usedService = Service.AHDV;
-                session = new Session(surname, doubleTime, usedService);
+                session = new Session(forename ,surname, doubleTime, usedService);
                 session.setDemandedDatarateMbits(usedService.demandedDatarateMbits);
                 session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
                 if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
