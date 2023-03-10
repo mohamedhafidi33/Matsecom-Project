@@ -44,38 +44,55 @@ public class GuiViewModel {
             case "Browsing and social networking":
                 usedService = Service.BASN;
                 session = new Session(surname, doubleTime, usedService);
-                session = helper(sub, session, terminal, doubleTime, usedService);
+                session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
+                if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
+                    doubleTime = doubleTime * 60;
+                    sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    if (sub.remainingDataVolumeMb < 0) {
+                        throw new IllegalArgumentException("Datavolume is empty");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Achievable Data rate is lower than the data rate needed for this service");
+                }
                 this.sessions.add(session);
                 break;
             case "App download":
                 usedService = Service.APL;
                 session = new Session(surname, doubleTime, usedService);
-                session = helper(sub, session, terminal, doubleTime, usedService);
+                session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
+                if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
+                    doubleTime = doubleTime * 60;
+                    sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    if (sub.remainingDataVolumeMb < 0) {
+                        throw new IllegalArgumentException("Datavolume is empty");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Achievable Data rate is lower than the data rate needed for this service");
+                }
                 this.sessions.add(session);
                 break;
             case "Adaptive HD video":
                 usedService = Service.AHDV;
                 session = new Session(surname, doubleTime, usedService);
-                session = helper(sub, session, terminal, doubleTime, usedService);
+                session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
+                if(session.getAchievableDatarateMbits() >= usedService.demandedDatarateMbits) {
+                    doubleTime = doubleTime * 60;
+                    sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
+                    if (sub.remainingDataVolumeMb < 0) {
+                        throw new IllegalArgumentException("Datavolume is empty");
+                    }
+                } else {
+                    throw new IllegalArgumentException("Achievable Data rate is lower than the data rate needed for this service");
+                }
                 this.sessions.add(session);
                 break;
         };
         
         storage.storeSessions(sessions);
         return this.sessions;
-    }
-
-    private Session helper(Subscriber sub, Session session, Terminal terminal, Double doubleTime, Service usedService) {
-        session.setAchievableDatarateMbits(terminal.supportedRanTechnologies[terminal.supportedRanTechnologies.length - 1].maxThroughputMbits * session.determineSignalStrength()); // Times random signal strength
-        if(session.getAchievableDatarateMbits() > usedService.demandedDatarateMbits) {
-            doubleTime = doubleTime * 60;
-            sub.remainingDataVolumeMb -= (session.getAchievableDatarateMbits() * doubleTime) / 8;
-            sub.usedDataVolume += (session.getAchievableDatarateMbits() * doubleTime) / 8;
-            if (sub.remainingDataVolumeMb < 0) {
-                throw new IllegalArgumentException("Datavolume is empty");
-            }
-        }
-        return session;
     }
 
     public ArrayList<Invoice> addInvoice(){
