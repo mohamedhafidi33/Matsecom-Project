@@ -82,7 +82,7 @@ public class Gui {
             for(Subscriber x: subscribers){
                 ChooseSubscriberSession.addItem(x.getMSIN());
                 ChooseEditSubscriber.addItem(x.getMSIN());
-                SubscriberListDropDown.addItem(x.getMSIN());
+                SubscriberListDropDown.addItem(x.getSurname());
             }
         }
     }
@@ -94,13 +94,26 @@ public class Gui {
         updateSessionDropDown();
         updateInvoiceDropDown();
         {
+            if(subscribers!=null){
+                DefaultListModel listModel = new DefaultListModel<>();
+                listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
+                for(Subscriber x : subscribers){
+                    if(x.getForename()==SubscriberListDropDown.getSelectedItem().toString()){
+                        listModel.add(1, x.terminal.name);
+                        listModel.add(2,x.subscription.name);
+                    }
+                }
+                list1.setModel(listModel);
+            }
+        }
+        {
             DefaultListModel listModel = new DefaultListModel<>();
             for (Session x : sessions) {
                 if (x.getSurname() == SessionDropDownList.getSelectedItem()) {
                     listModel.addElement("Sessioninformation from " + x.getSurname());
                     listModel.addElement("Used:" + x.getService());
                     listModel.addElement("Duration:" + x.getDurationMinutes() + "min.");
-                    listModel.addElement("Signal strenght:" + x.signalStrength);
+                    listModel.addElement("Signal strength:" + x.signalStrength);
                 }
             }
             list2.setModel(listModel);
@@ -109,7 +122,7 @@ public class Gui {
             DefaultListModel listModel = new DefaultListModel<>();
             listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
             for(Subscriber x : subscribers){
-                if(x.getMSIN()==SubscriberListDropDown.getSelectedItem()){
+                if(x.getForename()==SubscriberListDropDown.getSelectedItem().toString()){
                     listModel.add(1, x.terminal.name);
                     listModel.add(2,x.subscription.name);
                 }
@@ -213,14 +226,15 @@ public class Gui {
         SubscriberListDropDown.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
-                if(subscribers!=null){
+                if(subscribers!=null && SubscriberListDropDown.getSelectedItem()!= null){
                     DefaultListModel listModel = new DefaultListModel<>();
                     listModel.add(0, "Info about " + SubscriberListDropDown.getSelectedItem());
                     for(Subscriber x : subscribers){
-                        if(x.getMSIN()==SubscriberListDropDown.getSelectedItem()){
+                        if(x.getForename() == SubscriberListDropDown.getSelectedItem().toString()){
                             listModel.add(1, x.terminal.name);
                             listModel.add(2,x.subscription.name);
                         }
+                        JOptionPane.showMessageDialog(null,"works:" + x.forename + ":" + SubscriberListDropDown.getSelectedItem() == x.forename);
                     }
                     list1.setModel(listModel);
                 }
@@ -256,7 +270,7 @@ public class Gui {
                         listModel.addElement("Sessioninformation from " + x.getSurname());
                         listModel.addElement("Used:" + x.getService());
                         listModel.addElement("Duration:" + x.getDurationMinutes()+ "min.");
-                        listModel.addElement("Signal strenght:" + x.signalStrength);
+                        listModel.addElement("Signal strength:" + x.signalStrength);
                     }
                 }
                 list2.setModel(listModel);
