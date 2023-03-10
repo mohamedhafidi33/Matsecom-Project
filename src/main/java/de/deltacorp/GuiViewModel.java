@@ -112,7 +112,7 @@ public class GuiViewModel {
                         throw new IllegalArgumentException("Datavolume is empty");
                     }
                 } else {
-                    throw new IllegalArgumentException("Achievable Data rate is lower than the data rate needed for this service");
+                    throw new IllegalArgumentException("Achievable Data rate (" + session.getAchievableDatarateMbits() + ") is lower than the data rate needed for this service (" + usedService.demandedDatarateMbits + ")");
                 }
                 this.sessions.add(session);
                 break;
