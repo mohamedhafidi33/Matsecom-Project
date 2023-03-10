@@ -5,6 +5,7 @@ import java.util.Random;
 public class Session {
 	private RanTechnology ranTechnology;
 	public double chargingEur;
+	public double signalStrength = 0;
 	private double achievableDatarateMbits;
 	private double demandedDatarateMbits;
 	private double UsedDataMb = Math.min(achievableDatarateMbits, demandedDatarateMbits);
@@ -85,7 +86,6 @@ public class Session {
 	public double determineSignalStrength() {
 		Random rd = new Random(); 
 		double random = rd.nextDouble();
-		double signalStrength = 0;
 		if(random>=0.5) {
 			signalStrength=0.5;
 		}
